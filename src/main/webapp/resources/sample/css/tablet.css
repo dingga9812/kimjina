@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/*미디어쿼리:미디어의 가로크기가 768px 이상이면 아래 스타일 적용*/
+@media all and (min-width:768px) {
+/*공통사항*/
+ul {text-align:center;}
+/*공통사항 끝*/	
+	/*헤더영역시작*/
+.menu-toggle-btn {display:none;}
+.header .gnb {
+display:block;
+position:static;/*absolute->static*/
+background:none;
+width:auto;
+float:right;/*가로위치를 오른쪽으로 변경*/
+margin-top:10px;
+}
+.header .gnb li {
+float:left;
+border:none;
+/*width:95px;*//*수정*/
+}
+.header .gnb li:last-child {border-bottom:none;}
+.header .gnb li a {
+display:inline-block;/*콘텐츠 내용 크기 만큼만 자리 차지하는 영역*/
+padding-left:0px;/*추가*/
+margin-right:30px;/*추가*/
+color:rgb(22, 160, 133);
+
+
+}
+.header .gnb li a:hover {text-decoration:none;}
+/*헤더영역 끝*/
+
+/*슬라이드영역시작*/
+.carousel-item, .carousel-item img {height:500px;}
+/*슬아이드영역 끝*/
+
+/*we are영역 시작*/
+.float-clear {clear:both;}/*clear속성은 float작동을 없애는 역할*/
+.weare-section li {
+float:left;/*세로정렬 가로정렬로 변경할때 사용*/
+width:23.046875% ;/*(177 / 768)*100= 몇%*/
+margin-left:2.604166%; /*(20/768)*100=몇%*/
+overflow:hidden;/*반응형list박스에서 가로크기를 벗어나는 이미지 내용은 숨김처리*/
+}
+.weare-body li img {width:100%; height:auto;}
+.weare-body {margin:10px 3%;}
+
+.weare-body li:first-child {
+margin-left:0px;
+}
+/*we are영역 끝*/
+
+/*work 영역 시작*/
+.work-section li {
+float:left;/*세로배치->가로배치*/
+width:50%;
+max-height:300px;/*다른 높이로 비는 부분이 새생겨 보이는 이미지 최고 높이 지정*/
+overflow:hidden;/*높이 300px 넘으면 숨김 처리*/
+}
+/*work 영역 끝*/
+
+/*blog 영역 시작*/
+.blog-section li {
+float:left;
+width:31.59722222222%;/*3개중 1개의 가로크기 구하기 (242px/768)*100 = %*/
+margin-left:2.60416666666%;/*1개 여백 구하기 (20px/768)*100 = %*/
+height:300px;
+
+}
+.blog-section li div {
+	height:200px;
+	overflow:hidden;
+
+/*max-height:90%;
+min-height:200px;*/
+}
+.blog-section li .info2 {
+	padding:10px;
+}
+.blog-section li:first-child {
+margin-left:0px;
+}
+.blog-section li:nth-child(3n+1) {/*1,4,7,10,13..위치에 해당되는 것만 적용*/
+
+margin-left:0px;
+}
+
+.blog-section hr {display:none;} 
+/*blog 영역 끝*/
+
+/*contact영역 시작*/
+.input-class, .textarea-class {
+float:left;/*세로배치를 가로배치로 변경*/
+width:49%;/*2개로나누는 가로크기를 47% 지정*/
+}
+.input-class {
+margin-right:2%;
+}
+.contact-section form textarea {
+min-height: 120px;
+}
+/*contact영역 끝*/
+
+	
+}
