@@ -25,10 +25,12 @@
 - junit으로 DB접근 후 관리자단 회원관리 CRUD unit테스트 마무리OK.
 - @Component애노테이션사용으로 MemberVO 인젝션사용 가능OK.
 - DB 디버그용 드라이버 사용 pom.xml 의존성 추가 후, log4jdbc.log4j2.properties 추가 OK.
+- 실제 회원관리 화면 CRUD 적용 중 jsp중 member_list(select+검색)처리 후 페이징처리 OK.
+- member_write, member_update, member_delete 만들기 작업OK.
+- 스프링 AOP(관점지향프로그래밍-OOP의 확장기능)기능으로 개발용 디버그출력환경 만들기 시작.
+- pom.xml에 AOP모듈 추가 필수
+- root-context.xml에서 aop태그 추가
 - --------------- 여기까지 ------------------
-- 실제 회원관리 화면 CRUD 적용 중 jsp중 member_list(select+검색)처리 후 페이징처리 예정.
-- member_write, member_update, member_delete 만들기.
-- 스프링 AOP(관점지향프로그래밍-OOP의 확장기능)기능으로 개발용 디버그출력환경 만들기.
 - 실제 게시판 화면 CRUD 적용.
 - 파일업로드 라이브러리 사용 pom.xml 의존성 추가.
 - 게시판 업로드 화면 구현.
@@ -41,6 +43,67 @@
 - 웹프로젝트 소스를 스프링프레임워크 버전으로 5.2.5 마이그레이션(버전 업그레이드)
 - 오라클로 마이그레이션 작업.
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
+
+#### 20201224(목) 작업
+- AOP 작동않되었던문제점 2가지처리예정(아래)
+- 1. Controller클래스가 빈으로 등록되는 servlet-context.xml 에도 aop태그 추가
+- 2. DebugAdvice클래스의 logger.debug를 logger.info로 변경 또는, log4.xml설정 debug로 변경
+
+#### 20201223(수) 작업
+- 스프링의 특징3가지 : DI(의존성 주입:Dependency Injection), AOP(관점지향프로그래밍)
+, IoC(제어의 역전 Inversion of Control:개발자가 처리하였던  메모리관리(가비지컬렉션-쓰레기프로그램종료시키기)-개발자가 코딩으로 오브젝트클래스를 종료할 필요없이, 스프링이 대신 처리 하는 기능) IoC예(아래), 개발자편리위주로 변경된 프레임워크 스프링입니다.
+
+```
+Connection conn = null
+Statement stmt = null
+ResultSet rs = null 
+구현내용 마치면 항상 아래 처럼 처리 해줘야 했습니다. 스프링에서 IoC기능으로 개발자가 제어를 하지 않고,스프링이 처리 해 줍니다. 
+rs.close();
+stmt.close();
+conn.close();
+```
+- 스프링 AOP(관점지향프로그래밍-OOP의 확장기능)기능으로 개발용 디버그출력환경 만들기 시작.
+- AOP(Aspect Oriented Programming): 구조화된 OOP의 단점인 복잡도 증가를 줄이는 효과를 기대해서 만든 프로그램 방식 입니다.
+- 즉, OOP자바클래스단에서 제어하던 반복되는 명령을 호출단에서 제어하도록 변경한 내용이 AOP입니다.
+- 예, 인증처리, 디버그와 같은 에러처리를 개발 클래스에서 처리하지않고, 공통클래스 1개 만들어서,
+인증이나, 예외처리(디버그)가 필요할때 마다 호출되는 시스템을 AOP라고 합니다.
+- 예외처리를 AOP로 구현하면서, 기능을 확인해 봅니다.
+- DATABASE폴더에 edu_mysql.sql 더미스키마+데이터 백업작업.
+- 맥OS 워크벤치 백업이 오동작 -> phpMyAdmin 툴변경 내보내기(백업)했습니다.
+- 프로그램에서 데이터크기단위: 8비트단위=2의8제곱=256개=> 왜 데이터크기를 0~255=256개
+- ERD만들기: 발주사의 업무담당자와 미팅(협의)끝난 이후,
+- 발주사(회사,대학,관공서)에서 사용하는 업무서식문서(결제서류,입학원서,입사원서,월급명세서,휴가신청서 등등)를 가지고, ERD를 만들게 됩니다.
+- wamp(만세아이콘)실행.
+- 프로젝트에서 DATABASE폴더 안의 edu_mysql.sql 삭제.
+- 스프링에서 작업시 순서: DataBase > 쿼리 > DAO > Service > Controller > jsp
+- 지금 진행하는 스프링웹프로젝트 워크벤치로 ERD만들고, 
+- 물리DB생성 후 프로지서 사용 더미데이터 입력(게시물관련) 연습예정.(더 자세히는 7번째과목 SQL활용에서 다룹니다.)
+
+#### 20201222(화) 작업
+- 회원관리 CRUD마무리 OK.
+- 오후 문제점: 2가지(ID수정방지기능OK, enalbed값 jsp바인딩-(true|false-enabled)처리 확인) 업데이트 마무리.
+- 회원등록(CRUD중 C) 작업예정.
+- 중복아이디체크(Ajax로 간단한 RestAPI컨트롤러 구성): 중복아이디가 존재한다면, SUBMIT버튼을 비활성화(disabled)
+- 중복아이디가 존재하지 않을때만 SUBMIT버튼이 활성화시키는 Jquery를 사용합니다.
+- 중복아이디체크는 버튼을 사용하지 않고, 아이디 input 항목을 벗어났을때 이벤트를 이용해서 Ajax를 호출할 예정.
+- 한글이 POST시 깨지는 문제: web.xml 에서 한글처리를 위한 UTF-8필터 추가(필수)
+
+```
+<!--  ...한글처리를 위한 UTF-8 필터 추가 -->
+	<filter>
+	  <filter-name>encoding</filter-name>
+	  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	  <init-param>
+	   <param-name>encoding</param-name>
+	   <param-value>UTF-8</param-value>
+	  </init-param>
+	</filter>	
+	<filter-mapping>
+	  <filter-name>encoding</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+```
+- 회원관리 CRUD는 마무리OK,
 
 #### 20201221(월) 작업
 - 신규페이지 작업시 순서: 쿼리 > DAO > Service > Controller > jsp
@@ -59,7 +122,6 @@
 - @ModelAttribute("pageVO") 원래 이것을 사용하는 목적은 jsp에서 받을 때 필요 여기선 필요없음
 - log4j.xml 로그 등급 변경 및 dtd(Document Type Define)문서타입정의를 아래로 변경예정
 - 더미데이터 입력: 데이터베이스 프로시저(DB전용프로그램방식) 사용예정.
-- 스프링웹프로젝트 ERD만들고, 물리DB생성 후 프로지서 사용 연습예정.(더 자세히는 7번째과목 SQL활용에서 다룹니다.)
 
 #### 20201218(금) 작업
 - 조건문 중 삼항 연산자: 
@@ -87,6 +149,14 @@
 - IT분야 먼저해봤다는 것이 중요하고, 그이상 그이하도 아닙니다.(박사, 석사, 고졸이 중요한 것이 아니고, 먼저해본사람이 우수한 기술자가 됩니다.)
 
 #### 20201217(목) 작업
+- ERD제작 후 -> 물리DB(스키마) 생성. -> 물리DB(스키마)에 더미데이터입력(회원,게시물) 프로시저(DB프로그램)를 이용해서. -> DATABASE폴더에 만들어진 DB를 백업(파일명: edu_mysql.sql)
+- PK(프라이머리 키)를 제일 상단에 배치하는 이유: 인덱스 검색(목차검색)을 속도를 빠르게 하기 위해서
+- Mysql에서 엔진: 이노디비(InnoDB-트랜잭션가능), 마이아이삼(MyISAM-트랜잭션불가능)
+- 트랜잭션: 묶어서 처리하는 중간에 에러가 났을때, 롤백(원상복귀)시키는 기능.
+- 위 트랜잭션은 은행사이트에서는 필수.(예, 자금이체를 할때, 계좌번호2개 있습니다. 
+- {본인계좌에서 100만원 인출 -> 전송도중 전송에러 -> 상대편계좌로 100만원 입금않됨}
+- 위 상황에서 트랜잭션으로 {}묶어주면, 본인계좌에서 100만원 인출이 취소(원상복귀)
+
 - 구직자훈련 OpenAPI를 사용한 목적은: URL쿼리스트링으로 (HRD-net시스템의 Rest서버에전송) 보내면, 반환값을 xml을 받습니다.
 - 받은 xml(json)데이터를 화면에 리프리젠테이션 하는 파싱이 목적입니다.(대세기술)
 - 우리는 자바앱까지만 콘솔에서 확인하고, 우리 프로젝트에서는 댓글, 네이버아이디로그인API 사용할때 위 기술이(OAuth인증후) 사용할 예정.

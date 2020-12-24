@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
@@ -85,6 +86,7 @@
               </div>
           <!-- 버튼영역 끝 -->
           <input type="hidden" name="user_id" value="${memberVO.user_id}">
+          <input type="hidden" name="page" value="${pageVO.page}">
           </form>
           </div>
         </div>
@@ -98,8 +100,8 @@
 <%@ include file="../include/footer.jsp" %>
 <script>
 $(document).ready(function(){
-	$("#deleteBtn").bind("click",function(){
-		if(confirm("정말 삭제 하시겠습니까?")){
+	$("#deleteBtn").bind("click", function(){
+		if(confirm("정말 삭제 하시겠습니까?")) {
 			$("#action_form").attr("action","/admin/member/member_delete");
 			$("#action_form").attr("method","post");
 			$("#action_form").submit();

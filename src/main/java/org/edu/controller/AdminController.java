@@ -56,8 +56,8 @@ public class AdminController {
 		String xss_data = "첫번째 내용 입니다.<br><br><br>줄바꿈 처리입니다. <script>location.href('http://naver.com');</script>";
 		boardVO.setContent(securityCode.unscript(xss_data));
 		boardVO.setWriter("admin");
-		Date regdate = new Date();
-		boardVO.setRegdate(regdate);
+		Date reg_date = new Date();
+		boardVO.setReg_date(reg_date);
 		boardVO.setView_count(2);
 		boardVO.setReply_count(0);
 		model.addAttribute("boardVO", boardVO);
@@ -71,8 +71,8 @@ public class AdminController {
 		input_board.setTitle("첫번째 게시물 입니다.");
 		input_board.setContent("첫번째 내용 입니다.<br>줄바꿈했습니다.");
 		input_board.setWriter("admin");
-		Date regdate = new Date();
-		input_board.setRegdate(regdate);
+		Date reg_date = new Date();
+		input_board.setReg_date(reg_date);
 		input_board.setView_count(2);
 		input_board.setReply_count(0);
 		BoardVO[] board_array = new BoardVO[2];
@@ -84,7 +84,7 @@ public class AdminController {
 		input_board2.setTitle("두번째 게시물 입니다.");
 		input_board2.setContent("두번째 내용 입니다.<br>줄바꿈했습니다.");
 		input_board2.setWriter("user02");
-		input_board2.setRegdate(regdate);
+		input_board2.setReg_date(reg_date);
 		input_board2.setView_count(2);
 		input_board2.setReply_count(0);
 		//input_board2 = {2,"두번째 게시물 입니다.","두번째 내용 입니다.<br>줄바꿈했습니다.","user02",now(),2,0};
@@ -97,15 +97,32 @@ public class AdminController {
 	
 	//메서드 오버로딩(예, 동영상 로딩중..., 로딩된 매개변수가 다르면, 메서드이름을 중복가능합니다. 대표적인 다형성구현)
 	@RequestMapping(value="/admin/member/member_write",method=RequestMethod.POST)
-	public String member_write(@RequestParam("user_name") String user_name) throws Exception {
+	public String member_write(MemberVO memberVO) throws Exception {
 		//아래 GET방식의 폼 출력화면에서 데이터 전송받은 내용을 처리하는 바인딩.
 		//DB베이스 입력/출력/삭제/수정 처리-다음에...
+		memberService.insertMember(memberVO);
 		return "redirect:/admin/member/member_list";//절대경로로 처리된 이후에 이동할 URL주소를 여기에 반환
 	}
 	
 	@RequestMapping(value="/admin/member/member_write",method=RequestMethod.GET)
 	public String member_write() throws Exception {
 		return "admin/member/member_write";
+	}
+	
+	@RequestMapping(value="/admin/member/member_update",method=RequestMethod.GET)
+	public String member_update(@RequestParam("user_id") String user_id, @ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
+		//GET방식으로 업데이트 폼파일만 보여줍니다.
+		MemberVO memberVO = memberService.readMember(user_id);
+		model.addAttribute("memberVO", memberVO);
+		return "admin/member/member_update";
+	}
+	
+	@RequestMapping(value="/admin/member/member_update",method=RequestMethod.POST)
+	public String member_update(PageVO pageVO, MemberVO memberVO) throws Exception {
+		//POST방식으로 넘어온 값을 DB수정처리하는 역할
+		memberService.updateMember(memberVO);
+		//redirect를 사용하는 목적은 새로고침 했을때, 위 updateMember메서드를 재 실행방지 목적입니다.
+		return "redirect:/admin/member/member_view?page="+pageVO.getPage()+"&user_id=" + memberVO.getUser_id();
 	}
 	
 	@RequestMapping(value="/admin/member/member_delete",method=RequestMethod.POST)
