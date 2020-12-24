@@ -26,7 +26,7 @@
 		<property name="username" value="root"></property>
 		<property name="password" value="apmsetup"></property>
 	</bean>
-	
+	 
 	<!--
 		DataSource 설정으로 JDBC 연결후, MyBatis와 MySql을 연동시킴. 
 		SqlSessionFactory : myBatis와 스프링의 Connection 생성후 쿼리 위치지정.
