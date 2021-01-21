@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <script>
-if('${msg}' != '') {
+if('${msg}' != '') {//자바의 EL표기법 = 달라{변수명}
 	alert("${msg} 가(이) 성공하였습니다.");
 }
 </script>
