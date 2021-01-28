@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- 관리자단 헤더 시작 header.jsp -->
 <!DOCTYPE html>
 <html lang="ko">
@@ -8,6 +8,9 @@
 <script>
 if('${msg}' != '') {//자바의 EL표기법 = 달라{변수명}
 	alert("${msg} 가(이) 성공하였습니다.");
+}
+if('${msg_fail}' != ''){
+	alert("${msg_fail} 가(이) 실패햐였습니다.");
 }
 </script>
   <meta charset="utf-8">
@@ -74,7 +77,7 @@ if('${msg}' != '') {//자바의 EL표기법 = 달라{변수명}
           <img src="/resources/dist/img/default-150x150.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">관리자</a>
+          <a href="#" class="d-block">${session_username}</a>
         </div>
       </div>
 
@@ -121,11 +124,34 @@ if('${msg}' != '') {//자바의 EL표기법 = 달라{변수명}
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/admin/board/board_list" class="nav-link">
+                <a href="/admin/bbs_type/bbs_type_list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>게시물 관리</p>
+                  <p>게시판생성 관리</p>
                 </a>
               </li>
+            
+              <!-- 여기서부터 붙여넣기 시작 -->
+              <li class="nav-item menu-is-opening menu-open">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                                      게시물 관리
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: block;">
+                <c:forEach items="${board_type_list}" var="boardTypeVO">
+                  <li class="nav-item">
+                    <a href="/admin/board/board_list?board_type=${boardTypeVO.board_type}" class="nav-link <c:out value='${(session_board_type eq boardTypeVO.board_type)?"active":""}' /> ">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>${boardTypeVO.board_name}</p>
+                    </a>
+                  </li>
+                 </c:forEach>
+                </ul>
+              </li>
+              <!-- 여기까지 붙여넣기 끝 -->
+              
             </ul>
           </li>
           
