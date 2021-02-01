@@ -62,7 +62,7 @@ header {
 	display: inline-block;
 	width: 150px;
 	height: 80px;
-	background: url(../img/top_logo.png) no-repeat;
+	background: url(../img/homelogo.png) no-repeat;
 	background-size: 50px 60px !important;
 	background-position: center center !important;
 	text-indent: -9999px;
@@ -205,21 +205,21 @@ header {
   li.imglist0 {
     position: relative;
     z-index: 50;
-    background: url(../img/slide_01.jpg) no-repeat;
+    background: url(../img/homepunn1.jpg) no-repeat;
   }
   li.imglist1 {
     position: absolute;
     z-index: 10;
     left: 0;
     top: 0;
-    background: url(../img/slide_02.jpg) no-repeat;
+    background: url(../img/homepunn2.jpg) no-repeat;
   }
   li.imglist2 {
     position: absolute;
     z-index: 10;
     left: 0;
     top: 0;
-    background: url(../img/slide_03.jpg) no-repeat;
+    background: url(../img/homepunn3.jpg) no-repeat;
   }
   .roll_content {
     position: static;

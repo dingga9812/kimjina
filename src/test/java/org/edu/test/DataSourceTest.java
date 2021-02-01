@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -108,11 +109,20 @@ public class DataSourceTest {
 	@Test
 	public void insertBoard() throws Exception {
 		BoardVO boardVO = new BoardVO();
+		boardVO.setBoard_type("gallery");
 		boardVO.setTitle("더미게시물");
 		boardVO.setContent("더미 내용 입니다.");
 		boardVO.setWriter("일반사용자");
+		
 		//boardVO.setBno(프라이머리키);
-		for(int cnt=0;cnt<=100;cnt++) {//더미게시물 100입력
+		for(int cnt=0;cnt<=0;cnt++) {//더미게시물 100입력
+			Date reg_date = new Date();
+			Calendar cal = Calendar.getInstance();//+
+			cal.setTime(reg_date);//+
+			cal.add(Calendar.SECOND, cnt);//+ cnt초 더하기
+			//???????????????????????????????????????????
+			boardVO.setReg_date(cal.getTime());//이부분이 작동을 하지 않아서 문제
+			//???????????????????????????????????????????
 			boardDAO.insertBoard(boardVO);
 		}
 	}
@@ -133,10 +143,16 @@ public class DataSourceTest {
 		memberVO.setPoint(100);
 		memberVO.setEnabled(true);
 		memberVO.setLevels("ROLE_USER");
-		Date reg_date = new Date();
-		memberVO.setReg_date(reg_date);//매퍼쿼리에서 처리로 대체
-		for(int cnt=0;cnt<=100;cnt++) {//더미사용자 100명 입력
+		
+		for(int cnt=0;cnt<=0;cnt++) {//더미사용자 100명 입력
 			memberVO.setUser_id(memberPrimaryKey());
+			Date reg_date = new Date();
+			Calendar cal = Calendar.getInstance();//+
+			cal.setTime(reg_date);//+
+			cal.add(Calendar.SECOND, cnt);//+ cnt초 더하기
+			//???????????????????????????????????????????
+			memberVO.setReg_date(cal.getTime());//이부분이 작동을 하지 않아서 문제
+			//???????????????????????????????????????????
 			memberDAO.insertMember(memberVO);
 		}		
 	}
@@ -145,8 +161,8 @@ public class DataSourceTest {
 	public void selectMember() throws Exception {
 		//"user_name","홍길동"
 		PageVO pageVO = new PageVO();
-		pageVO.setSearch_type("user_name");
-		pageVO.setSearch_keyword("홍길동");
+		pageVO.setSearch_type("user_id");
+		pageVO.setSearch_keyword("admin");
 		//아래3개줄은 초기 페이징처리에 필요한 필수값 저장
 		pageVO.setPage(1);
 		pageVO.setPerPageNum(5);//리스트하단에 보이는 페이징번호의 개수

@@ -112,7 +112,7 @@
 	          <div class="card-body">
 	          	<div class="form-group">
                    <label for="replyer">Replyer</label>
-                   <input type="text" class="form-control" name="replyer" id="replyer" placeholder="작성자를 입력해 주세요." required>
+                   <input value="${session_username}" type="text" class="form-control" name="replyer" id="replyer" placeholder="작성자를 입력해 주세요." required>
                    <!-- 폼에서 input같은 입력태그에는 name속성이 반드시 필요, 이유는 DB에 입력할때,
                    	 값을 전송하게 되는데, 전송값을 담아두는 이름이 name가 되고, 위에서는 writer 입니다. -->
                 </div>
@@ -256,6 +256,7 @@ var replyList = function() {
 			//alert("디버그" + result);
 			if(typeof result=="undefined" || result=="" || result==null) {
 				$("#div_reply").empty();//조회된 값이 없을때, 화면내용클리어.
+				$("#div_reply").html('<div class="pagination justify-content-center"><ul class="pagination pageVO"></ul></div>');
 				alert('조회된 값이 없습니다.');
 			}else{
 				//빵틀에 result데이터를 바인딩해서 출력합니다.
@@ -403,6 +404,7 @@ $(document).ready(function() {
 				//입력이 success된 후에 페이지는 댓글갯수1증가+1페이지로 가고+replyList()댓글 목록 호출
 				var reply_count = $("#reply_count").text();//$("영역").val(input데이터),
 				//alert(reply_count);//디버그
+				if(reply_count == ""){reply_count=0;}//DB 초기값이 null일때 체크
 				$("#reply_count").text(parseInt(reply_count)+1);//$("영역").text(영역안쪽의문자열)
 				$("#reply_page").val("1");
 				replyList();

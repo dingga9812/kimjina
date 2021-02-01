@@ -19,11 +19,14 @@
             	<!-- 로컬 개발일때 사용(아래) -->
                 
                 <value>classpath:/properties/local.properties</value> 
-               
+                   
                 <!-- 운영서버 배포일때 사용 -->
                 <!-- 
                 <value>classpath:/properties/prod.properties</value>
                  -->
+
+                <!-- Junit실행시 에러나서 NaverLoginController놔두고 여기에도 위치 추가 -->
+                <value>classpath:/properties/sns.properties</value>
             </list>
         </property>
     </bean>
@@ -83,6 +86,17 @@
 	<!-- 로컬 mysql log4jdbc 설정후 -->
 	
 	<bean id="dataSource-mysql_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" 
+				  value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="url" 
+				  value="${DbUrl}"></property>
+		<property name="username" value="${DbUserName}"></property>
+		<property name="password" value="${DbPassword}"></property>
+	</bean>
+	
+	
+	<!-- 로컬oracle log4jdbc 드라이버 설정(아래) -->
+	<bean id="dataSource-oracle_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" 
 				  value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url" 
