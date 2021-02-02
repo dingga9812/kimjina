@@ -21,26 +21,26 @@ public class BoardTypeDAOImpl implements IF_BoardTypeDAO {
 
 	@Override
 	public BoardTypeVO view_board_type(String board_type) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		// 게시판 타입 수정시 기존 내용 불러오는 쿼리 매핑(아래)
+		return sqlSession.selectOne("boardTypeMapper.viewBoardType", board_type);
 	}
 
 	@Override
 	public void update_board_type(BoardTypeVO boardTypeVO) throws Exception {
-		// TODO Auto-generated method stub
-		
+		// 게시판 타입 수정 쿼리 매핑(아래)
+		sqlSession.update("boardTypeMapper.updateBoardType", boardTypeVO);
 	}
 
 	@Override
 	public void insert_board_type(BoardTypeVO boardTypeVO) throws Exception {
-		// TODO Auto-generated method stub
-		
+		// 게시판 타입 신규등록 쿼리 매핑(아래)
+		sqlSession.insert("boardTypeMapper.insertBoardType", boardTypeVO);
 	}
 
 	@Override
-	public void delete_board_type(String boardTypeVO) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void delete_board_type(String board_type) throws Exception {
+		// 게시판 타입 삭제 쿼리 매핑(아래)
+		sqlSession.delete("boardTypeMapper.deleteBoardType", board_type);
 	}
 
 }
