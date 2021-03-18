@@ -26,7 +26,51 @@
     <!-- 본문내용 Main content -->
     <section class="content">
       <div class="container-fluid">
-         <c:forEach items="${board_type_list}" var="boardTypeVO">
+      
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">최근등록한 회원목록</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <ul class="users-list clearfix">
+            <c:forEach items="${latest_member}" var="memberVO">
+            <li>
+            <a class="users-list-name" href="/admin/member/member_view?page=1&user_id=${memberVO.user_id}">
+            <!-- 
+              <img src="/resources/dist/img/default-150x150.png" alt="User Image">
+               -->
+              <img onerror="this.src='/resources/dist/img/default-150x150.png'" src="/resources/profile/${memberVO.user_id}.jpg" alt="사용자프로필" style="width:120px;height:120px;" />
+              <div>
+              ${memberVO.user_name}
+			  <span class="users-list-date">
+              <c:out value="${(memberVO.enabled eq 'true')?'활성':'비활성'}" />
+              </span>
+              </div>
+              </a>
+            </li>
+            </c:forEach>
+          </ul>
+          <!-- /.users-list -->
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer text-center">
+          <a href="/admin/member/member_list">View All Users</a>
+        </div>
+        <!-- /.card-footer -->
+      </div>
+
+      <c:forEach items="${board_type_list}" var="boardTypeVO">
+
       	<!-- 관리자에서 생성한 게시판 개수만큼 반복문실행 -->
         <div class="card">
               <div class="card-header border-transparent">
@@ -56,14 +100,7 @@
                     <tbody>
                     <!-- 대시보드 만들기 2번째 방법(아래) -->
                     <!-- 파일 import시 매개변수 board_type=${baordTypeVO.board_type} -->
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                      </td>
-                    </tr>
+                    <c:import url="/admin/latest/latest_board?board_type=${boardTypeVO.board_type}" />
                     </tbody>
                   </table>
                 </div>
@@ -75,7 +112,9 @@
               </div>
               <!-- /.card-footer -->
             </div>
-      </c:forEach> 
+            
+      </c:forEach>
+      
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

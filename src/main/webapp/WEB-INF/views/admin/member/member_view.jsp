@@ -42,7 +42,7 @@
                 <!-- jsp에서 자바변수(저장소)를 사용하는 방법 Model로 수신한 $ user_id2 변수명 으로 표시 -->
                 <%-- ${user_id2} 아래 보안코딩 적용 --%>
                 <c:out value="${memberVO.user_id}"></c:out>
-                </p>
+ 				<img onerror="this.src='/resources/dist/img/default-150x150.png'" class="img-circle" src="/resources/profile/${memberVO.user_id}.jpg" style="width:50px;height:50px;" />                </p>
 
                 <hr><!-- horizontal 수평선 태그 -->
                 <strong><i class="fas fa-map-marker-alt mr-1"></i> user_name</strong>
