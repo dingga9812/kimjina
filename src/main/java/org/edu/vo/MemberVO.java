@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 회원정보관리용 클래스
- * @author 김일국 2020-12-04 생성
+ * @author 김진아 2020-12-04 생성
  *
  */
 @Component

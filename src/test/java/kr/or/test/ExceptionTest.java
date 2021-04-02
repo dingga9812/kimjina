@@ -17,7 +17,7 @@ public class ExceptionTest {
 		MemberVO memberVO = new MemberVO();//jsp폼데이터를 set으로저장, get으로출력.
 		//멤버클래스에 값을 입력해 봅니다. 메모리DB에 입력합니다.
 		memberVO.setUser_id("kimilguk");
-		memberVO.setUser_name("김일국");
+		memberVO.setUser_name("김진아");
 		memberVO.setEmail("kimilguk@abc.com");
 		System.out.println("회원정보 클래스의 멤버변수 값들을 출력하기 = " 
 		+ memberVO.getUser_name()

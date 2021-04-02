@@ -897,7 +897,7 @@ Date toDay = new Date();
 MemberVO m1 = new MemberVO();
 // setter 메서드를 이용해 해당 인스턴스 변수에 값을 넣는다.
 m1.setUser_id("kimilguk");
-m1.setUser_name("김일국");
+m1.setUser_name("김진아");
 m1.setEmail("kimilguk@abc.com");
 m1.setEnabled(true);
 m1.setReg_date(toDay);
@@ -1271,13 +1271,13 @@ function prepareButton() {
 - 500 Error : 스프링(자바)프로그램에러일때.
 - 인덱스:index 색인(책끝에 가,나,다...), 특징 0부터 시작하는 순서를 가지게 됩니다.
 - var member = [
-			{name : "김일국"},
+			{name : "김진아"},
 			{name : "이병현"},
 			{name : "남가인"}
 		];
 		
 ```
-- 출력: member[0][name] => "김일국";
+- 출력: member[0][name] => "김진아";
 ```
 
 - 소괄호(), 중괄호{}, 대괄호[]
@@ -1631,7 +1631,7 @@ function prepareButton() {
 - 20201111.mwb ( mysql workbench 파일 )
 - 왜냐하면, 대소문자를 구분해서 Client != client 사용하는 경우가 있습니다.
 - 인덱스 예 배열변수, var member (=엔티티,테이블-표) = [
-			{name: "김일국", gender : "남자", age: 40},
+			{name: "김진아", gender : "남자", age: 40},
 			{name : "이병현" , gender : "남자", age: "서른살"},
 			{name : "남가인" , gender : "여자", age: 20}
 		];
@@ -1694,11 +1694,11 @@ function prepareButton() {
 - 워크벤치로 백업 도 실습하실 예정 입니다.
 - index = 색인을 만들면 장점은 검색속도 빨라집니다. 모든검색하지 않고, 검색키값만 검색
 - index 자동으로 만들어 집니다. 테이블 생성할때, 기본키(Primary Key: PK)만들때 자동생성
-- var member = [ {name:"김일국"}, {name:"김일국"}, {name:"남가인"} ];
-- Update 명령어는 주의: update member SET name = "김일국"; //이렇게 실행 시말서
+- var member = [ {name:"김진아"}, {name:"김진아"}, {name:"남가인"} ];
+- Update 명령어는 주의: update member SET name = "김진아"; //이렇게 실행 시말서
 - delete from member; //위 3개 데이터 모두 지워집니다.
 - delete from member where index = 0;
-- update member SET name = "김일국" where index = 1; 이렇게 해서 1개 수정하게처리
+- update member SET name = "김진아" where index = 1; 이렇게 해서 1개 수정하게처리
 - * 애스터리스크 , ? 물음표 : 와일드 카드(대체가능한) 문자
 - abc.txt = a?c.txt : 물음표는 1개의 문자만 대체가능합니다.
 - abc.txt = *.txt : 별표는 여러개의 문자를 대체가능합니다.
@@ -1712,7 +1712,7 @@ function prepareButton() {
 - 참고: MVC 개발방식, Model(db)-View(jsp,html)-Controller(java)
 - 관계: 1:m(many, 1대다관계), n:m(다대다관계)
 - var member (=엔티티,테이블-표) = [ 자바-스프링에서는 VO(Value Object)클래스라고 함.
-			{name (=속성,필드,컬럼) : "김일국" (=속성값,필드값) ...
+			{name (=속성,필드,컬럼) : "김진아" (=속성값,필드값) ...
 
 - 5명 6개월 선문대 : 개발이사1(ERD), 개발팀과장남1,여1(ERD보고 기본CRUD구현), 
 - 개발팀대리1(jsp생산), 디자인팀대리1(퍼블리싱)
@@ -1742,7 +1742,7 @@ function prepareButton() {
 - 인덱스를 가지고, 데이터베이스(테이블) 자료를 입력,출력,수정,삭제 개발자일.
 - 대괄호 = [ 테이블 배열 ], 중괄호 = { 한줄배열 }, 소괄호 = ( 매개변수 )
 - 인덱스 예 배열변수, var member (=엔티티,테이블-표) = [
-			{name (=속성,필드,컬럼) : "김일국" (=속성값,필드값) , gender : "남자", age: 40},
+			{name (=속성,필드,컬럼) : "김진아" (=속성값,필드값) , gender : "남자", age: 40},
 			{name : "이병현" , gender : "남자", age: "서른살"},
 			관계형DB 에서는 위처럼 age필드(칼럼) 숫자, 문자 혼합 불가능
                                         noSQL(비관계형 DB)에서는 가능 주로 IoT사용.
@@ -1750,7 +1750,7 @@ function prepareButton() {
 		];
 		
 ```
-- 출력: member[0][name] => "김일국";
+- 출력: member[0][name] => "김진아";
 - 출력: member[1][name] => "이병현";
 - 출력: member[2][name] => "남가인";
 ```
@@ -1845,13 +1845,13 @@ function prepareButton() {
 - 서술형시험은 오픈북 이니까 부담없이 보시면 됩니다.
 - : 콜론,  ;세미콜론=함수종료,한줄 종료,  :  ;  ,
 - 키:값 배열변수 예, var member = [
-			{name : "김일국" , gender : "남자"},
+			{name : "김진아" , gender : "남자"},
 			{name : "이병현" , gender : "남자"},
 			{name : "남가인" , gender : "여자"}
 		];
 
 ```
-- 출력: member[0][name] => "김일국";
+- 출력: member[0][name] => "김진아";
 - 출력: member[1][name] => "이병현";
 - 출력: member[2][name] => "남가인";
 ```
@@ -1860,7 +1860,7 @@ function prepareButton() {
 - GUI: 그래픽유저인터페이스, 탐색기(윈도)
 - CLI: 커맨드라인인터페이스, 명령프롬프트(윈도), 배시쉘(리눅스)
 디지털컨버전스반
-강사: 김일국 (010-8175-6075)
+강사: 김진아 (010-8175-6075)
 이메일: boramcom@daum.net
 IT강의저장소: https://github.com/miniplugin/human
 실습은 학원PC에서 하지 못하시는 관계로

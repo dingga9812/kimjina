@@ -9,7 +9,7 @@ package org.edu.vo;
  * - 1페이지계산 10[1페이지당출력할개수]x(1[몇번째페이지번호]-1) = 0 1페이지일때
  * - 2페이지계산 10x(2-1) = 10[계산결과나온 시작페이지번호] 2페이지일때
  * - SELECT * FROM tbl_board order by bno desc limit 10, 5;# 10-시작인덱스,10-출력할 개수
- * @author 김일국
+ * @author 김진아
  *
  */
 public class PageVO {

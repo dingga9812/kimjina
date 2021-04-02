@@ -36,7 +36,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * 제이유닛4클래스를 사용.
  * 단위테스트는 톰캣이 실행되지 않아도 작동이 되야 합니다.
  * 그래서, 테스트 클래스 상단에 servelet-context.xml 이러한 설정파일을 불러들여서 실행이 가능
- * @author 김일국
+ * @author 김진아
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)

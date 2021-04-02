@@ -1,7 +1,7 @@
 package kr.or.test;
 /**
  * 열거형 Enumerate 자료형 영역 만들기
- * @author 김일국
+ * @author 김진아
  *
  */
 public enum Week {

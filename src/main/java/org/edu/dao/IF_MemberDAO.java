@@ -7,7 +7,7 @@ import org.edu.vo.PageVO;
 
 /**
  * 회원관리 DAO 메서드 명세(목차) 인터페이스.
- * @author 김일국
+ * @author 김진아
  *
  */
 public interface IF_MemberDAO {

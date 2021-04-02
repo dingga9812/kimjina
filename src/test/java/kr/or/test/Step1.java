@@ -1,7 +1,7 @@
 package kr.or.test;
 /**
  * 내부변수와 배열 사용에 대해서
- * @author 김일국
+ * @author 김진아
  *
  */
 public class Step1 {

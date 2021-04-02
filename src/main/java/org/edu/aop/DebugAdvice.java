@@ -18,7 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
  * DebugAdvice클래스로서 디버그를 Advice라는 AOP기능을 사용해서 디버그를 실행하게 됩니다.
- * @author 김일국
+ * @author 김진아
  *
  */
 @Component //스프링빈으로 사용하겠다는 명시

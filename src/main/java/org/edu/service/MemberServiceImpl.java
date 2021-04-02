@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * MemberServiceImpl는 DAO메서드 호출을 구현
- * @author 김일국
+ * @author 김진아
  *
  */
 @Service

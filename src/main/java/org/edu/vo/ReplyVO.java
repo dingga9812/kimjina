@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * ReplyVO클래스는 댓글 데이터 입출력을 담당하는 데이터 클래스
- * @author 김일국
+ * @author 김진아
  *
  */
 public class ReplyVO {

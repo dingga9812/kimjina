@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * ReplyController.java 클래스
  * 댓글 구현 Rest-API전용 컨트롤러=RestAPI서버
- * @author 김일국
+ * @author 김진아
  *
  */
 @RestController
