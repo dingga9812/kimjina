@@ -25,23 +25,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Aspect //AOP기능을 사용하겠다는 명시 
 public class DebugAdvice {
 	private static final Logger logger = LoggerFactory.getLogger(DebugAdvice.class);
-	/**
-	 * @throws Throwable 
-	 * @Around 애노테이션클래스는 메서드 실행에 직접 관여함.
-	 * Around클래스타입의 파라미터(매개변수)로 ProceedingJoinPoint타입의 클래스사용
-	 * ProceedingJoinPoint클래스는 JoinPoint(실행지점)의 모든 메서드를 기지면서,
-	 * 직접 타켓클래스의 메서드를 실행할 수 있는 기능이 있음.
-	 * ProceedingJoinPoint.proceed()메서드는 특이하게도 Exception클래스보다 상위에 위치하고 Throwable예외가 전달합니다.
-	 * 즉, 일반 내부 Exception에러처리보다 외부에서 ProceedingJoinPoint.proceed()메서드로 먼저처리 합니다.
-	 * proceed()메서드 생성에 Throwable을 사용하고, 시간을 체크하는 기능을 작성 할 수 있습니다.
-	 * 위 시간 체크하는 기능이 필요한 이유는? 개발자가만든 다양한 메서드의 시작과 끝 시간을 체크가 가능합니다.
-	 * 예를들면, 개발자가 만든 클래스를 실행시켰을때, 5~10분이상 느리게 진행된는 현상이 생깁니다.
-	 * 어느 메서드에서 시간 얼만큼 소요되는지 확인해야지만, 트러블 슈팅이 가능합니다.
-	 * 아래 @Around()애노테이션 클래스의 ()는 디버그할 영역지정. 
-	 * MemberServcie*모든클래스(Impl)에서. *(..)(모든이름의 메서드를 포함) function(String user_id)
-	 */
+	
 	@Around("execution(* org.edu.service.MemberService*.*(..))")
-	//@Around("execution(* org.edu.controller.AdminController.*(..))")//컨트롤러의 메서드는 실행않됨
+	//@Around("execution(* org.edu.controller.AdminController.*(..))")//컨트롤러의 메서드는 실행안됨
 	public Object timeLog(ProceedingJoinPoint pjp) throws Throwable {
 		logger.info("AOP 디버그 시작=========================");
 		long startTime = System.currentTimeMillis();//현재 컴퓨터시간을 저장하는 변수
@@ -54,10 +40,7 @@ public class DebugAdvice {
 		return result;
 	}
 	
-	//현재 클래스명은 디버그용도의 AOP(스프링전용)을 사용했으나, 
-	//여기서 AOP는 예전 자바코딩의 인터셉터(AdviceController)와 같은 기능
-	//추가로 다중게시판용 세션관리도 AOP기능을 사용하게 됩니다. 코딩은 아래 와 같습니다.
-	//아래 컨트롤러 패키지 안에 있는 모든 메서드가 실행될때, 공통으로 필요한 세선관리코드를 넣습니다.
+	
 	@Around("execution(* org.edu.controller.*Controller.*(..))")
 	public Object sessionManager(ProceedingJoinPoint pjp) throws Throwable {
 		//AOP에서 RequestContextHolder클래스를 이용해서 HttpServletRequest 오브젝트를 사용하기(아래)
